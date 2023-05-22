@@ -1,0 +1,64 @@
+
+<?= Contao\Message::generate() ?>
+
+<div id="tl_buttons">
+  <a href="<?= ampersand($this->backUrl) ?>" class="header_back" title="<?= Contao\StringUtil::specialchars($this->backBTTitle) ?>" accesskey="b"><?= $this->backBT ?></a>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('<?= $this->formId ?>').addEventListener('submit', function () {
+      document.getElementById('save').classList.add('importing');
+    });
+  });
+</script>
+
+<style>
+  #save {
+    background-image: url('system/themes/flexible/icons/loading.svg');
+    background-repeat: no-repeat;
+    background-position: -25px 50%;
+    background-size: 24px;
+  }
+  #save.importing {
+    background-position: 7px 50%;
+    padding-left: 40px;
+    color: #999;
+    pointer-events: none;
+  }
+</style>
+
+<form id="<?= $this->formId ?>" class="tl_form tl_edit_form" method="post">
+  <div class="tl_formbody_edit">
+    <input type="hidden" name="FORM_SUBMIT" value="<?= $this->formId ?>">
+    <input type="hidden" name="REQUEST_TOKEN" value="<?= REQUEST_TOKEN ?>">
+
+    <div class="tl_box cf">
+      <div class="w50 widget">
+        <h3>
+          <label for="youtubeId"><?= $this->youtubeIdLabel ?><span class="mandatory">*</span></label>
+        </h3>
+        <input type="text" name="youtubeId" id="ctrl_youtubeId" class="tl_text" value="" required="" maxlength="11" onfocus="Backend.getScrollOffset()">
+        <p class="tl_help tl_tip"><?= $this->youtubeIdHelp ?></p>
+      </div>
+      <div class="w50 widget">
+        <h3>
+          <label for="videoMaxHeight"><?= $this->videoMaxHeightLabel ?></label>
+        </h3>
+        <select name="videoMaxHeight" id="ctrl_videoMaxHeight" class="tl_select" onfocus="Backend.getScrollOffset()">
+          <option value="">-</option>
+          <?php foreach ($this->videoMaxHeights as $maxHeight): ?>
+            <option value="<?= $maxHeight ?>"<?php if ($maxHeight === $this->videoMaxHeightSelected): ?> selected<?php endif; ?>><?= $maxHeight ?></option>
+          <?php endforeach; ?>
+        </select>
+        <p class="tl_help tl_tip"><?= $this->videoMaxHeightHelp ?></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tl_formbody_submit">
+    <div class="tl_submit_container">
+      <button type="submit" name="save" id="save" class="tl_submit" accesskey="s"><?= $this->submitLabel ?></button>
+    </div>
+  </div>
+</form>

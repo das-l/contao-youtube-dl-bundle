@@ -1,0 +1,23 @@
+services:
+    _defaults:
+        autoconfigure: true
+
+    DasL\ContaoYoutubeDlBundle\Downloader\YoutubeDownloader:
+        arguments:
+            - '@das_l_youtube_dl'
+
+    DasL\ContaoYoutubeDlBundle\DataContainerAction\Files:
+        arguments:
+            - '@DasL\ContaoYoutubeDlBundle\Downloader\YoutubeDownloader'
+            - '@security.helper'
+            - '@session'
+            - '@request_stack'
+            - '@translator'
+            - '%kernel.project_dir%'
+            - '%contao.upload_path%'
+            - '%das_l_contao_youtube_dl.videoMaxHeights%'
+        public: true
+
+    DasL\ContaoYoutubeDlBundle\EventListener\DataContainer\FilesButtonCallback:
+        arguments:
+            - '@security.helper'

@@ -1,0 +1,56 @@
+{
+    "name": "das-l/contao-youtube-dl-bundle",
+    "type": "contao-bundle",
+    "description": "Contao extension: Download YouTube videos directly to the file system, using youtube-dl.",
+    "homepage": "https://github.com/das-l/contao-youtube-dl-bundle",
+    "license": "LGPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Alex Wuttke",
+            "homepage": "https://das-l.de",
+            "email": "alex@das-l.de"
+        }
+    ],
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "contao/core-bundle": "^4.9",
+        "symfony/config": "^4.4 || ^5.1",
+        "symfony/dependency-injection": "^4.4 || ^5.1",
+        "symfony/http-kernel": "^4.4 || ^5.1",
+        "symfony/security-core": "^4.4 || ^5.1",
+        "symfony/translation": "^4.4 || ^5.1",
+        "das-l/youtube-dl-bundle": "^1.0"
+    },
+    "conflict": {
+        "contao/manager-plugin": "<2.0 || >=3.0"
+    },
+    "require-dev": {
+        "contao/manager-plugin": "^2.0",
+        "contao/easy-coding-standard": "^4.0"
+    },
+    "extra": {
+        "contao-manager-plugin": "DasL\\ContaoYoutubeDlBundle\\ContaoManager\\Plugin"
+    },
+    "autoload": {
+        "psr-4": {
+            "DasL\\ContaoYoutubeDlBundle\\": "src/"
+        }
+    },
+    "support": {
+        "issues": "https://github.com/das-l/contao-youtube-dl-bundle/issues",
+        "source": "https://github.com/das-l/contao-youtube-dl-bundle"
+    },
+    "scripts": {
+        "cs-fixer": [
+            "vendor/bin/ecs check src/ --fix --ansi"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "contao-components/installer": false,
+            "php-http/discovery": false,
+            "dealerdirect/phpcodesniffer-composer-installer": false,
+            "contao/manager-plugin": false
+        }
+    }
+}
