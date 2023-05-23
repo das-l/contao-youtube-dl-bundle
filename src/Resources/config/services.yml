@@ -15,6 +15,7 @@ services:
             - '@translator'
             - '%kernel.project_dir%'
             - '%contao.upload_path%'
+            - '%das_l_contao_youtube_dl.ffmpegPath%'
             - '%das_l_contao_youtube_dl.videoMaxHeights%'
         public: true
 

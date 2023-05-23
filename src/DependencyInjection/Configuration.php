@@ -23,6 +23,9 @@ class Configuration implements ConfigurationInterface
         $treeBuilder
             ->getRootNode()
             ->children()
+                ->scalarNode('ffmpegPath')
+                    ->defaultNull()
+                ->end()
                 ->arrayNode('videoMaxHeights')
                     ->scalarPrototype()->end()
                     ->defaultValue([

@@ -32,9 +32,10 @@ class Files
     private $translator;
     private $projectDir;
     private $contaoUploadPath;
+    private $ffmpegPath;
     private $videoMaxHeights;
 
-    public function __construct(YoutubeDownloader $youtubeDownloader, Security $security, SessionInterface $session, RequestStack $requestStack, TranslatorInterface $translator, string $projectDir, string $contaoUploadPath, array $videoMaxHeights)
+    public function __construct(YoutubeDownloader $youtubeDownloader, Security $security, SessionInterface $session, RequestStack $requestStack, TranslatorInterface $translator, string $projectDir, string $contaoUploadPath, ?string $ffmpegPath, array $videoMaxHeights)
     {
         $this->youtubeDownloader = $youtubeDownloader;
         $this->security = $security;
@@ -43,6 +44,7 @@ class Files
         $this->translator = $translator;
         $this->projectDir = $projectDir;
         $this->contaoUploadPath = $contaoUploadPath;
+        $this->ffmpegPath = $ffmpegPath;
         $this->videoMaxHeights = $videoMaxHeights;
     }
 
@@ -104,6 +106,10 @@ class Files
             $this->session->set('das_l_contao_youtube_dl.videoMaxHeight', $maxHeight);
 
             $additionalOptions['format'] = sprintf('bestvideo[ext=mp4][height<=%1$s]+bestaudio[ext=m4a]/best[height<=%1$s]', $maxHeight);
+        }
+
+        if ($this->ffmpegPath) {
+            $additionalOptions['ffmpegLocation'] = $this->ffmpegPath;
         }
 
         $youtubeId = $this->extractYoutubeId($youtubeString);

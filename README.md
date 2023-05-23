@@ -11,6 +11,13 @@ das_l_youtube_dl:
     binPath: '/your/bin/directory/youtube-dl'
 ```
 
+`ffmpeg` is also recommended so that `youtube-dl` can merge downloaded audio and video into one file, because YouTube usually provides audio and video separately for most high-quality formats. If an `ffmpeg` or `avconv` command is not available in your environment and an executable can also not be found in any common location, you can provide the location of the binary with the following config:
+
+```
+das_l_contao_youtube_dl:
+    ffmpegPath: '/your/bin/directory/ffmpeg'
+```
+
 ## Configuration
 
 You can customize the available maximum video height options:

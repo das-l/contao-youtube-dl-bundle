@@ -40,6 +40,9 @@ class DasLContaoYoutubeDlExtension extends Extension
 
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $mergedConfig);
-        $container->setParameter('das_l_contao_youtube_dl.videoMaxHeights', $config['videoMaxHeights']);
+
+        foreach (['ffmpegPath', 'videoMaxHeights'] as $parameter) {
+            $container->setParameter('das_l_contao_youtube_dl.'.$parameter, $config[$parameter]);
+        }
     }
 }
